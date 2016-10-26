@@ -1,21 +1,21 @@
-/*´´½¨ÓÃ»§±í(user)*/
+/*åˆ›å»ºç”¨æˆ·è¡¨(user)*/
 create table LoginIn (
-	userName nvarchar(50) primary key,	--ÓÃ»§ĞÕÃû
-	userPwd varchar(50),				--ÓÃ»§ÃÜÂë
-	userPower int						--ÓÃ»§È¨ÏŞ
+	userName nvarchar(50) primary key,	--ç”¨æˆ·å§“å
+	userPwd varchar(50),				--ç”¨æˆ·å¯†ç 
+	userPower int						--ç”¨æˆ·æƒé™
 );
 
-insert into LoginIn values('ËŞ¹Ü', '123456', 0);
-insert into LoginIn values('Ë¾ÔÆ·É', '123456', 1);
+insert into LoginIn values('å®¿ç®¡', '123456', 0);
+insert into LoginIn values('å°æ', '123456', 1);
 
 select * from LoginIn;
 
-/*´´½¨Â¥·¿±í(hou)*/
+/*åˆ›å»ºæ¥¼æˆ¿è¡¨(hou)*/
 create table hou (
-	houId int primary key,				--Â¥·¿±àºÅ
-	houNum int,							--·¿¼äÊıÁ¿
-	houFlr int,							--Â¥²ãÊıÁ¿
-	houPeo int							--Ó¦×¡ÈËÊı
+	houId int primary key,				--æ¥¼æˆ¿ç¼–å·
+	houNum int,							--æˆ¿é—´æ•°é‡
+	houFlr int,							--æ¥¼å±‚æ•°é‡
+	houPeo int							--åº”ä½äººæ•°
 );
 
 select * from hou;
@@ -25,16 +25,16 @@ select houId from hou;
 select * from hou where houId = 1;
 select MAX(houId) from hou;
 
-/*´´½¨ÇŞÊÒ±í(dormitory)*/
+/*åˆ›å»ºå¯å®¤è¡¨(dormitory)*/
 create table dormitory (
-	dormId char(10) primary key,		--ÇŞÊÒºÅ
-	dormSex char(2) not null,			--ÇŞÊÒĞÔ±ğ
-	dormHouId int not null,				--ËùÊôÂ¥¶°
-	dormNum int not null,				--Ó¦×¡ÈËÊı
-	dormFact int,						--Êµ×¡ÈËÊı
-	dormPrice money,					--×¡ËŞ·ÑÓÃ
-	dormTel varchar(30),				--µç»°ºÅÂë
-	dormRemark nvarchar(100)			--±¸×¢
+	dormId char(10) primary key,		--å¯å®¤å·
+	dormSex char(2) not null,			--å¯å®¤æ€§åˆ«
+	dormHouId int not null,				--æ‰€å±æ¥¼æ ‹
+	dormNum int not null,				--åº”ä½äººæ•°
+	dormFact int,						--å®ä½äººæ•°
+	dormPrice money,					--ä½å®¿è´¹ç”¨
+	dormTel varchar(30),				--ç”µè¯å·ç 
+	dormRemark nvarchar(100)			--å¤‡æ³¨
 	foreign key(dormHouId) references hou(houId)
 );
 
@@ -48,84 +48,84 @@ select dormId from Dormitory where dormHouId = 5;
 -- delete from dormitory where dormId = 2214
 
 insert into dormitory (dormId, dormSex, dormHouId, dormNum, dormPrice, dormTel, dormRemark)
- values ('5422', 'ÄĞ', 5, 4, 1200.00, '0714-2567', 'Ô­ÇŞÊÒÎª5712');
+ values ('5422', 'ç”·', 5, 4, 1200.00, '0714-2567', 'åŸå¯å®¤ä¸º5712');
 
 
-/*´´½¨Ñ§Éú±í(student)*/
+/*åˆ›å»ºå­¦ç”Ÿè¡¨(student)*/
 create table student(
-	stuId char(30) primary key,			--Ñ§ºÅ
-	stuName nvarchar(50) not null,		--ĞÕÃû
-	stuDormId char(10),					--ÇŞÊÒºÅ
-	stuSex char(2) not null,			--ĞÔ±ğ
-	stuInDate Date not null,			--ÈëÑ§ÈÕÆÚ
-	stuBirDate Date not null,			--³öÉúÈÕÆÚ
-	stuCollege nvarchar(50) not null,	--ËùÊôÑ§Ôº
-	stuClass nvarchar(50) not null,		--ËùÊô°à¼¶
-	stuPolit nvarchar(20),				--ÕşÖÎÃæÃ²
-	stuTel varchar(30),					--ÁªÏµµç»°
-	stuAddress nvarchar(50),			--¼ÒÍ¥×¡Ö·
-	stuRemark nvarchar(100),			--±¸×¢
+	stuId char(30) primary key,			--å­¦å·
+	stuName nvarchar(50) not null,		--å§“å
+	stuDormId char(10),					--å¯å®¤å·
+	stuSex char(2) not null,			--æ€§åˆ«
+	stuInDate Date not null,			--å…¥å­¦æ—¥æœŸ
+	stuBirDate Date not null,			--å‡ºç”Ÿæ—¥æœŸ
+	stuCollege nvarchar(50) not null,	--æ‰€å±å­¦é™¢
+	stuClass nvarchar(50) not null,		--æ‰€å±ç­çº§
+	stuPolit nvarchar(20),				--æ”¿æ²»é¢è²Œ
+	stuTel varchar(30),					--è”ç³»ç”µè¯
+	stuAddress nvarchar(50),			--å®¶åº­ä½å€
+	stuRemark nvarchar(100),			--å¤‡æ³¨
 	foreign key(stuDormID) references dormitory(dormId)
 );
-insert into student values('201140420101', 'Ë¾ÔÆ·É', '5422', 'ÄĞ', '2013-6-1', '1992-8-22', '¼ÆËã»úÑ§Ôº', '11¼¶ÍøÂç¹¤³Ì', '¹²ÇàÍÅÔ±', '18271633177', 'ºÓ±±Ê¡±£¶¨ÊĞäÃÖİÊĞ', 'ÎŞ');
-insert into student values('201140420105', 'Â··É', '5420', 'ÄĞ', '2013-6-1', '1992-8-22', '¼ÆËã»úÑ§Ôº', '11¼¶ÍøÂç¹¤³Ì', '¹²ÇàÍÅÔ±', '18271633177', 'ºÓ±±Ê¡±£¶¨ÊĞäÃÖİÊĞ', 'ÎŞ');
+insert into student values('201150600101', 'å°åº„', '5422', 'ç”·', '2013-6-1', '1993-9-12', 'è®¡ç®—æœºå­¦é™¢', '11çº§è®¡ç®—æœºåº”ç”¨', 'å…±é’å›¢å‘˜', '13456732134', 'æ²³åŒ—çœä¿å®šå¸‚æ¶æ°´å¸‚', 'æ— ');
+insert into student values('201150600105', 'å°æ˜', '5420', 'ç”·', '2013-6-1', '1992-8-22', 'è®¡ç®—æœºå­¦é™¢', '11çº§è®¡ç®—æœºåº”ç”¨', 'å…±é’å›¢å‘˜', '13456732134', 'æ²³åŒ—çœä¿å®šå¸‚å®šå·å¸‚', 'æ— ');
 
 select * from student;
 select COUNT(*) from student where stuDormId = '5422';
-select * from student where stuId = '201140420101';
+select * from student where stuId = '201150600101';
 select * from student where stuDormId = '5422';
-update student set stuId = '201140420101', 
-stuName = 'siyunfei', stuDormId = '5422',
-stuSex = 'ÄĞ', stuInDate = '2013-6-1', stuBirDate = '1992-8-22',
-stuCollege = '¼ÆËã»úÑ§Ôº', stuClass = '11¼¶ÍøÂç¹¤³Ì',
-stuPolit = '¹²ÇàÍÅÔ±', stuTel = '18271633177', stuAddress = 'ºÓ±±Ê¡äÃÖİÊĞ',
+update student set stuId = '201150600101', 
+stuName = 'xiaoli', stuDormId = '5422',
+stuSex = 'ç”·', stuInDate = '2013-6-1', stuBirDate = '1993-9-12',
+stuCollege = 'è®¡ç®—æœºå­¦é™¢', stuClass = '11çº§è®¡ç®—æœºåº”ç”¨',
+stuPolit = 'å…±é’å›¢å‘˜', stuTel = '13456732134', stuAddress = 'æ²³åŒ—çœå®šå·å¸‚',
 stuRemark = 'HelloWorld!'
-where stuId = '201140420101';
+where stuId = '201150600101';
 -- drop table student
 
-select COUNT(*) from student where stuDormId in (select dormId from Dormitory where dormHouId = 5); --²éÑ¯5¶°Ò»¹²×¡ÁË¶àÉÙÑ§Éú
+select COUNT(*) from student where stuDormId in (select dormId from Dormitory where dormHouId = 5); --æŸ¥è¯¢5æ ‹ä¸€å…±ä½äº†å¤šå°‘å­¦ç”Ÿ
 
 select COUNT(*) from student where stuDormId in (select dormId from dormitory);
 
 select dormId, COUNT(stuId) from dormitory, student group by dormId;
 
 
-/* ´´½¨Ô±¹¤±í(employee)*/
+/* åˆ›å»ºå‘˜å·¥è¡¨(employee)*/
 create table employee (
-	empId char(10) primary key,			--¹ÍÔ±±àºÅ
-	empName nvarchar(50) not null,		--¹ÍÔ±ĞÕÃû
-	empAge int not null,				--¹ÍÔ±ÄêÁä
-	empSex char(2) not null,			--¹ÍÔ±ĞÔ±ğ
-	empHouId int not null,				--¹ÍÔ±ËùÊôÂ¥¶°
-	empJob nvarchar(20),				--¹ÍÔ±Ö°Î»
-	empAddress nvarchar(50),			--¼ÒÍ¥×¡Ö·
-	empTel varchar(30),					--ÁªÏµµç»°
-	empRemark nvarchar(100)				--±¸×¢
+	empId char(10) primary key,			--é›‡å‘˜ç¼–å·
+	empName nvarchar(50) not null,		--é›‡å‘˜å§“å
+	empAge int not null,				--é›‡å‘˜å¹´é¾„
+	empSex char(2) not null,			--é›‡å‘˜æ€§åˆ«
+	empHouId int not null,				--é›‡å‘˜æ‰€å±æ¥¼æ ‹
+	empJob nvarchar(20),				--é›‡å‘˜èŒä½
+	empAddress nvarchar(50),			--å®¶åº­ä½å€
+	empTel varchar(30),					--è”ç³»ç”µè¯
+	empRemark nvarchar(100)				--å¤‡æ³¨
 	foreign key(empHouId) references hou(houId)
 );
 
-insert into employee values('005', 'Íõ´óÂè', 35, 'Å®', 5, '¹ÜÀíÔ±', 'ºş±±Ê¡»ÆÊ¯ÊĞÏÂÂ½ÇøÙ¡¼Ò‰G', '15639857458', 'ÎŞ');
-insert into employee values('006', 'Íõ´óÂè', 35, 'Å®', 5, '¹ÜÀíÔ±', 'ºş±±Ê¡»ÆÊ¯ÊĞÏÂÂ½ÇøÙ¡¼Ò‰G', '15639857458', 'ÎŞ');
-insert into employee values('007', 'Íõ´óÂè', 35, 'Å®', 5, '¹ÜÀíÔ±', 'ºş±±Ê¡»ÆÊ¯ÊĞÏÂÂ½ÇøÙ¡¼Ò‰G', '15639857458', 'ÎŞ');
-insert into employee values('008', 'Íõ´óÂè', 35, 'Å®', 5, '¹ÜÀíÔ±', 'ºş±±Ê¡»ÆÊ¯ÊĞÏÂÂ½ÇøÙ¡¼Ò‰G', '15639857458', 'ÎŞ');
-insert into employee values('009', 'Íõ´óÂè', 35, 'Å®', 5, '¹ÜÀíÔ±', 'ºş±±Ê¡»ÆÊ¯ÊĞÏÂÂ½ÇøÙ¡¼Ò‰G', '15639857458', 'ÎŞ');
-insert into employee values('010', 'Íõ´óÂè', 35, 'Å®', 5, '¹ÜÀíÔ±', 'ºş±±Ê¡»ÆÊ¯ÊĞÏÂÂ½ÇøÙ¡¼Ò‰G', '15639857458', 'ÎŞ');
+insert into employee values('005', 'ç‹å¤§å¦ˆ', 35, 'å¥³', 5, 'ç®¡ç†å‘˜', 'æ¹–åŒ—çœé»„çŸ³å¸‚ä¸‹é™†åŒºä½Ÿå®¶å¡†', '15639857458', 'æ— ');
+insert into employee values('006', 'ç‹å¤§å¦ˆ', 35, 'å¥³', 5, 'ç®¡ç†å‘˜', 'æ¹–åŒ—çœé»„çŸ³å¸‚ä¸‹é™†åŒºä½Ÿå®¶å¡†', '15639857458', 'æ— ');
+insert into employee values('007', 'ç‹å¤§å¦ˆ', 35, 'å¥³', 5, 'ç®¡ç†å‘˜', 'æ¹–åŒ—çœé»„çŸ³å¸‚ä¸‹é™†åŒºä½Ÿå®¶å¡†', '15639857458', 'æ— ');
+insert into employee values('008', 'ç‹å¤§å¦ˆ', 35, 'å¥³', 5, 'ç®¡ç†å‘˜', 'æ¹–åŒ—çœé»„çŸ³å¸‚ä¸‹é™†åŒºä½Ÿå®¶å¡†', '15639857458', 'æ— ');
+insert into employee values('009', 'ç‹å¤§å¦ˆ', 35, 'å¥³', 5, 'ç®¡ç†å‘˜', 'æ¹–åŒ—çœé»„çŸ³å¸‚ä¸‹é™†åŒºä½Ÿå®¶å¡†', '15639857458', 'æ— ');
+insert into employee values('010', 'ç‹å¤§å¦ˆ', 35, 'å¥³', 5, 'ç®¡ç†å‘˜', 'æ¹–åŒ—çœé»„çŸ³å¸‚ä¸‹é™†åŒºä½Ÿå®¶å¡†', '15639857458', 'æ— ');
 select * from employee;
 select * from employee where empId = '001';
 
 
 
-/*´´½¨ÈËÔ±À´·Ã±í(visit)*/
+/*åˆ›å»ºäººå‘˜æ¥è®¿è¡¨(visit)*/
 create table visit (
 	autoId int primary key,
-	visName nvarchar(50) not null,		--À´·ÃÈËÔ±ĞÕÃû
-	visHost nvarchar(50),				--±»·ÃÈËÔ±ĞÕÃû
-	visDormId char(10),					--·ÃÎÊÇŞÊÒ
-	visInTime varchar(50),				--À´·ÃÊ±¼ä,Ó¦¸ÃÎªDatetimeÀàĞÍ£¬ºóÃæÓĞ¸ÄÕı
-	visLevTime varchar(50),				--Àë¿ªÊ±¼ä,Ó¦¸ÃÎªDatetimeÀàĞÍ£¬ºóÃæÓĞ¸ÄÕı
-	visWatchId char(10),				--Öµ°àÈË
-	visCred varchar(50),				--Éí·İÖ¤ºÅ
-	visRemark nvarchar(50),				--±¸×¢
+	visName nvarchar(50) not null,		--æ¥è®¿äººå‘˜å§“å
+	visHost nvarchar(50),				--è¢«è®¿äººå‘˜å§“å
+	visDormId char(10),					--è®¿é—®å¯å®¤
+	visInTime varchar(50),				--æ¥è®¿æ—¶é—´,åº”è¯¥ä¸ºDatetimeç±»å‹ï¼Œåé¢æœ‰æ”¹æ­£
+	visLevTime varchar(50),				--ç¦»å¼€æ—¶é—´,åº”è¯¥ä¸ºDatetimeç±»å‹ï¼Œåé¢æœ‰æ”¹æ­£
+	visWatchId char(10),				--å€¼ç­äºº
+	visCred varchar(50),				--èº«ä»½è¯å·
+	visRemark nvarchar(50),				--å¤‡æ³¨
 	foreign key(visDormId) references dormitory(dormId),
 	foreign key(visWatchId) references employee(empId)
 );
@@ -142,21 +142,21 @@ select * from visit where visInTime like '%2011-9-1%' or visLevTIme like '%2011-
 -- alter COLUMN visInTime Datetime
 -- go
 
-/*´´½¨ÎïÆ·³öÈëÂ¥±í(goodsMove)*/
+/*åˆ›å»ºç‰©å“å‡ºå…¥æ¥¼è¡¨(goodsMove)*/
 create table goodsMove (
-	godsStuId char(30) not null,	--ÎïÆ·ËùÊôÑ§ÉúÑ§ºÅ
-	godsId char(20) primary key,	--ÎïÆ·±àºÅ
-	godsInTime varchar(50),			--ÎïÆ·½øÂ¥Ê±¼ä
-	godsLevTime varchar(50),		--ÎïÆ·³öÂ¥Ê±¼ä
-	godsWatchId char(10),			--Öµ°àÈË
-	godsRemark nvarchar(50)			--±¸×¢
+	godsStuId char(30) not null,	--ç‰©å“æ‰€å±å­¦ç”Ÿå­¦å·
+	godsId char(20) primary key,	--ç‰©å“ç¼–å·
+	godsInTime varchar(50),			--ç‰©å“è¿›æ¥¼æ—¶é—´
+	godsLevTime varchar(50),		--ç‰©å“å‡ºæ¥¼æ—¶é—´
+	godsWatchId char(10),			--å€¼ç­äºº
+	godsRemark nvarchar(50)			--å¤‡æ³¨
 	foreign key(godsWatchId) references employee(empId)
 );
-insert into goodsMove values('201140420101', '2013060101', '2013-6-1 09:12:12', '2013-6-2 09:56:12', '001', '´ËÈË³¤µÃÂÔ³éÏó£¬ÓĞÍµµÁÏÓÒÉ£¡');
-insert into goodsMove values('201140420101', '2013060202', '2013-6-2 09:12:12', '2013-6-2 09:56:12', '001', '´ËÈË³¤µÃÂÔ³éÏó£¬ÓĞÍµµÁÏÓÒÉ£¡');
-insert into goodsMove values('201140420101', '2013060203', '2013-6-2 09:12:12', '2013-6-2 09:56:12', '001', '´ËÈË³¤µÃÂÔ³éÏó£¬ÓĞÍµµÁÏÓÒÉ£¡');
-insert into goodsMove values('201140420101', '2013060204', '2013-6-2 09:12:12', '2013-6-2 09:56:12', '001', '´ËÈË³¤µÃÂÔ³éÏó£¬ÓĞÍµµÁÏÓÒÉ£¡');
-insert into goodsMove values('201140420101', '2013060205', '2013-6-2 09:12:12', '2013-6-2 09:56:12', '001', '´ËÈË³¤µÃÂÔ³éÏó£¬ÓĞÍµµÁÏÓÒÉ£¡');
+insert into goodsMove values('201150600101', '2013060101', '2013-6-1 09:12:12', '2013-6-2 09:56:12', '001', 'æ­¤äººé•¿å¾—ç•¥æŠ½è±¡ï¼Œæœ‰å·ç›—å«Œç–‘ï¼');
+insert into goodsMove values('201150600101', '2013060202', '2013-6-2 09:12:12', '2013-6-2 09:56:12', '001', 'æ­¤äººé•¿å¾—ç•¥æŠ½è±¡ï¼Œæœ‰å·ç›—å«Œç–‘ï¼');
+insert into goodsMove values('201150600101', '2013060203', '2013-6-2 09:12:12', '2013-6-2 09:56:12', '001', 'æ­¤äººé•¿å¾—ç•¥æŠ½è±¡ï¼Œæœ‰å·ç›—å«Œç–‘ï¼');
+insert into goodsMove values('201150600101', '2013060204', '2013-6-2 09:12:12', '2013-6-2 09:56:12', '001', 'æ­¤äººé•¿å¾—ç•¥æŠ½è±¡ï¼Œæœ‰å·ç›—å«Œç–‘ï¼');
+insert into goodsMove values('201150600101', '2013060205', '2013-6-2 09:12:12', '2013-6-2 09:56:12', '001', 'æ­¤äººé•¿å¾—ç•¥æŠ½è±¡ï¼Œæœ‰å·ç›—å«Œç–‘ï¼');
 
 select * from goodsMove;
 select godsId from goodsMove;
